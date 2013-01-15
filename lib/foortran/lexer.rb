@@ -1,13 +1,19 @@
 module Foortran
   class Lexer
-    KEYWORDS = %w(program)
-
     attr_accessor :source
     attr_reader   :tokens
 
     def self.tokenize(source)
       lexer = new(source)
       lexer.tokenize
+    end
+
+    def add_keyword_token(token)
+      add_token(Token.keyword(token))
+    end
+
+    def add_token(token)
+      tokens << token
     end
 
     def initialize(source)
@@ -21,10 +27,7 @@ module Foortran
         chunk = source[i..-1]
 
         if identifier = chunk[/\A([a-z]\w*)/, 1]
-          if KEYWORDS.include?(identifier)
-            tokens << [identifier.upcase.to_sym, identifier]
-          end
-
+          add_keyword_token(identifier) if KEYWORDS.include?(identifier)
           i += identifier.size
         else
           i += 1

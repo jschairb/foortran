@@ -17,6 +17,24 @@ module Foortran
       end
     end
 
+    describe "#add_keyword_token" do
+      it "adds a keyword token to the tokens" do
+        keyword_token = Token.keyword("program")
+        lexer.add_keyword_token("program")
+        lexer.tokens.must_include(keyword_token)
+      end
+    end
+
+    describe "#add_token" do
+      let(:token) { [:IDENTIFIER, "identifier"] }
+
+      it "adds a token to the collection" do
+        token_count = lexer.tokens.size
+        lexer.add_token(token)
+        lexer.tokens.size.must_equal(token_count +1)
+      end
+    end
+
     describe "#tokenize" do
       let(:tokens) { lexer.tokenize }
 
