@@ -3,7 +3,7 @@ require_relative '../spec_helper'
 module Foortran
   describe Lexer do 
     let(:lexer)  { Lexer.new(source) }
-    let(:source) { "" }
+    let(:source) { get_source_file("helloworld.f90") }
 
     describe ".tokenize" do 
       it "returns tokenized source" do 
