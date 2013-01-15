@@ -2,6 +2,8 @@
 
 A Fortran90 VM
 
+[![Build Status](https://travis-ci.org/jschairb/foortran.png)](https://travis-ci.org/jschairb/foortran)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`foortran source.f90`
 
 ## Contributing
 
