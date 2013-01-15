@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    foortran (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (4.4.0)
+    rake (0.9.2.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  foortran!
+  minitest
+  rake
