@@ -2,8 +2,18 @@ module Foortran
   class Token
     attr_accessor :name, :value
 
+    def self.identifier(value)
+      token = new(:identifier, value)
+      token.to_ary
+    end
+
     def self.keyword(name)
       token = new(name, name)
+      token.to_ary
+    end
+
+    def self.string(value)
+      token = new(:string, value)
       token.to_ary
     end
 

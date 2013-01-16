@@ -6,10 +6,30 @@ module Foortran
     let(:token) { Token.new(name, value) }
     let(:value) { "my-string" }
 
+    describe ".identifier" do
+      it "sets the value as the value" do
+        identifier_token = Token.new("identifier", "helloworld").to_ary
+        Token.identifier("helloworld").must_equal identifier_token
+      end
+    end
+
     describe ".keyword" do
       it "sets the name as the value" do
         keyword_token = Token.new("program", "program").to_ary
         Token.keyword("program").must_equal keyword_token
+      end
+    end
+
+    describe ".string" do
+      let(:string)       { "hello, world" }
+      let(:string_token) { Token.string(string) }
+
+      it "sets the name as string" do
+        string_token[0].must_equal :STRING
+      end
+
+      it "sets the value as the value" do
+        string_token[1].must_equal string
       end
     end
 

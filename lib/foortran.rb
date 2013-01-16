@@ -1,5 +1,6 @@
 module Foortran
-  KEYWORDS = %w(program)
+  # http://fortranwiki.org/fortran/show/Keywords
+  KEYWORDS = %w(end print program)
 end
 
 require_relative 'foortran/lexer'

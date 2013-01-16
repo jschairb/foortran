@@ -17,11 +17,27 @@ module Foortran
       end
     end
 
+    describe "#add_identifier_token" do
+      it "adds an identifier token to the tokens" do
+        identifier_token = Token.identifier("helloworld")
+        lexer.add_identifier_token("helloworld")
+        lexer.tokens.must_include(identifier_token)
+      end
+    end
+
     describe "#add_keyword_token" do
       it "adds a keyword token to the tokens" do
         keyword_token = Token.keyword("program")
         lexer.add_keyword_token("program")
         lexer.tokens.must_include(keyword_token)
+      end
+    end
+
+    describe "#add_string_token" do
+      it "adds a string token to the tokens" do
+        string_token = Token.string("helloworld")
+        lexer.add_string_token("helloworld")
+        lexer.tokens.must_include(string_token)
       end
     end
 
@@ -38,8 +54,14 @@ module Foortran
     describe "#tokenize" do
       let(:tokens) { lexer.tokenize }
 
-      it "returns a keyword token" do
-        tokens.must_include [:PROGRAM, "program"]
+      it "returns a collection of tokens" do
+        puts tokens.inspect
+        skip "Unless how to test the collection"
+        expected_tokens = [
+          Token.keyword("program"),
+          Token.keyword("program")
+        ]
+        tokens.must_equal(expected_tokens)
       end
     end
   end
