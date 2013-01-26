@@ -1,10 +1,7 @@
 require 'bundler/gem_tasks'
-require 'rake/testtask'
+require 'rspec/core/rake_task'
 
-task :default => :test
+RSpec::Core::RakeTask.new(:spec)
 
-Rake::TestTask.new do |t|
-  t.libs.push "lib"
-  t.pattern = "spec/**/*_spec.rb"
-  t.verbose = true
-end
+task :default => :spec
+

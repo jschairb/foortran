@@ -7,16 +7,18 @@ module Foortran
     let(:value) { "my-string" }
 
     describe ".identifier" do
+      let(:identifier_token) { Token.new("identifier", "helloworld").to_ary }
+
       it "sets the value as the value" do
-        identifier_token = Token.new("identifier", "helloworld").to_ary
-        Token.identifier("helloworld").must_equal identifier_token
+        expect(Token.identifier("helloworld")).to eq(identifier_token)
       end
     end
 
     describe ".keyword" do
+      let(:keyword_token) { Token.new("program", "program").to_ary }
+
       it "sets the name as the value" do
-        keyword_token = Token.new("program", "program").to_ary
-        Token.keyword("program").must_equal keyword_token
+        expect(Token.keyword("program")).to eq(keyword_token)
       end
     end
 
@@ -25,39 +27,39 @@ module Foortran
       let(:string_token) { Token.string(string) }
 
       it "sets the name as string" do
-        string_token[0].must_equal :STRING
+        expect(string_token[0]).to eq(:STRING)
       end
 
       it "sets the value as the value" do
-        string_token[1].must_equal string
+        expect(string_token[1]).to eq(string)
       end
     end
 
     describe ".new" do
       it "sets the name attribute" do
-        token.name.must_equal name
+        expect(token.name).to eq(name)
       end
 
       it "sets the value attribute" do
-        token.value.must_equal value
+        expect(token.value).to eq(value)
       end
     end
 
     describe "#formatted_name" do
       it "upcases and symbolizes the name" do
-        token.formatted_name.must_equal name.upcase.to_sym
+        expect(token.formatted_name).to eq(name.upcase.to_sym)
       end
     end
 
     describe "#formatted_value" do
       it "returns the value" do
-        token.formatted_value.must_equal value
+        expect(token.formatted_value).to eq(value)
       end
     end
 
     describe "#to_ary" do
       it "returns a 2 item array with formatted name and value" do
-        token.to_ary.must_equal [token.formatted_name, token.formatted_value]
+        expect(token.to_ary).to eq([token.formatted_name, token.formatted_value])
       end
     end
   end

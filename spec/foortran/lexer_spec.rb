@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require 'spec_helper'
 
 module Foortran
   describe Lexer do
@@ -7,37 +7,40 @@ module Foortran
 
     describe ".tokenize" do
       it "returns tokenized source" do
-        Lexer.tokenize(source).must_equal lexer.tokenize
+        expect(Lexer.tokenize(source)).to eq(lexer.tokenize)
       end
     end
 
     describe ".new" do
       it "sets the source attribute" do
-        lexer.source.must_equal source
+        expect(lexer.source).to eq(source)
       end
     end
 
     describe "#add_identifier_token" do
+      let(:identifier_token) { Token.identifier("helloworld") }
+
       it "adds an identifier token to the tokens" do
-        identifier_token = Token.identifier("helloworld")
         lexer.add_identifier_token("helloworld")
-        lexer.tokens.must_include(identifier_token)
+        expect(lexer.tokens).to include(identifier_token)
       end
     end
 
     describe "#add_keyword_token" do
+      let(:keyword_token) { Token.keyword("program") }
+
       it "adds a keyword token to the tokens" do
-        keyword_token = Token.keyword("program")
         lexer.add_keyword_token("program")
-        lexer.tokens.must_include(keyword_token)
+        expect(lexer.tokens).to include(keyword_token)
       end
     end
 
     describe "#add_string_token" do
+      let(:string_token) { Token.string("helloworld") }
+
       it "adds a string token to the tokens" do
-        string_token = Token.string("helloworld")
         lexer.add_string_token("helloworld")
-        lexer.tokens.must_include(string_token)
+        expect(lexer.tokens).to include(string_token)
       end
     end
 
@@ -45,9 +48,7 @@ module Foortran
       let(:token) { [:IDENTIFIER, "identifier"] }
 
       it "adds a token to the collection" do
-        token_count = lexer.tokens.size
-        lexer.add_token(token)
-        lexer.tokens.size.must_equal(token_count +1)
+        expect { lexer.add_token(token) }.to change(lexer.tokens, :size).by(1)
       end
     end
 
@@ -55,8 +56,7 @@ module Foortran
       let(:tokens) { lexer.tokenize }
 
       it "returns a collection of tokens" do
-        puts tokens.inspect
-        skip "Unless how to test the collection"
+        pending "Unless how to test the collection"
         expected_tokens = [
           Token.keyword("program"),
           Token.keyword("program")
