@@ -4,5 +4,6 @@ module Foortran
 end
 
 require_relative 'foortran/lexer'
+require_relative 'foortran/parser'
 require_relative 'foortran/token'
 require_relative 'foortran/version'
